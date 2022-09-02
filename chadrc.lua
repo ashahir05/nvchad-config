@@ -39,7 +39,7 @@ M.mappings = {
       ["gT"] = {"<cmd> lua vim.lsp.buf.type_definition() <CR>", "Go to type definition"},
       ["<leader>ls"] = {"<cmd> lua vim.lsp.buf.document_symbol() <CR>", "List document symbols"},
       ["<leader>lw"] = {"<cmd> lua vim.lsp.buf.workspace_symbol() <CR>", "List workspace symbols"},
-      ["<leader>lc"] = {"<cmd> lua vim.lsp.buf.code_action() <CR>", "Code actions"},
+      ["<leader>c"] = {"<cmd> lua vim.lsp.buf.code_action() <CR>", "Code actions"},
       ["<leader>ll"] = {"<cmd> lua vim.lsp.buf.show_line_diagnostics() <CR>", "Show line diagnostics"},
       ["<leader>lr"] = {"<cmd> lua vim.lsp.buf.rename() <CR>", "Rename symbol"},
       ["<leader>l="] = {"<cmd> lua vim.lsp.buf.formatting() <CR>", "Formatting"},
@@ -77,6 +77,16 @@ M.plugins = {
         require("hop").setup()
       end,
     },
+    ["karb94/neoscroll.nvim"] = {
+      setup = function ()
+        require("core.lazy_load").on_file_open "neoscroll.nvim"
+      end,
+      config = function()
+        require("neoscroll").setup({
+          hide_cursor = false,
+        })
+      end
+    },
     ["max397574/better-escape.nvim"] = {
       config = function()
         require("better_escape").setup()
@@ -100,9 +110,16 @@ M.plugins = {
         "emmet-ls",
         "json-lsp",
 
+        -- python
+        "pyright",
         -- shell
         "shfmt",
         "shellcheck",
+
+        -- debug
+        "chrome-debug-adapter",
+        "bash-debug-adapter",
+        "debugpy",
       },
     },
 
